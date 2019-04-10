@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ApiContext from '../ApiContext/ApiContext';
 import { findNote, findFolder } from '../helper-funcs';
 
@@ -32,6 +33,12 @@ class NotePageNav extends React.Component {
       </section>
     )
   }
+}
+
+NotePageNav.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object),
+  folders: PropTypes.arrayOf(PropTypes.object),
+  noteId: PropTypes.string.isRequired
 }
 
 export default NotePageNav 

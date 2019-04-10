@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { NavLink, Link } from 'react-router-dom';
 import ApiContext from '../ApiContext/ApiContext';
-
 
 class FoldersNav extends React.Component {
   static contextType = ApiContext;
@@ -25,11 +25,21 @@ class FoldersNav extends React.Component {
           )}
         </ul>
         <div>
-          <button className='FoldersNav_button'>Add Folder</button>
+          <button>
+            <Link 
+              to='/add-folder'
+              className='FoldersNav_button'>
+                Add Folder
+            </Link>
+          </button>
         </div>
       </section>
     )
   }
+}
+
+FoldersNav.propTypes = {
+  folders: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default FoldersNav;

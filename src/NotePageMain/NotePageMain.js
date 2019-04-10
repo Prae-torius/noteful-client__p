@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Note from '../Note/Note';
 import ApiContext from '../ApiContext/ApiContext';
 import { findNote } from '../helper-funcs';
@@ -28,6 +29,11 @@ class NotePageMain extends React.Component {
       </section>
     )
   }
+}
+
+NotePageMain.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object),
+  noteId: PropTypes.string
 }
 
 export default NotePageMain

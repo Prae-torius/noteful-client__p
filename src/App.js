@@ -4,6 +4,9 @@ import FoldersNav from './FoldersNav(Sidebar)/FoldersNav';
 import NotePageNav from './NotePageNav(Sidebar)/NotePageNav';
 import NotesMain from './NotesMain/NotesMain';
 import NotePageMain from './NotePageMain/NotePageMain';
+import AddFolder from './AddFolder/AddFolder';
+import AddNote from './AddNote/AddNote';
+import NoteError from './NoteError/NoteError';
 import ApiContext from './ApiContext/ApiContext';
 
 const API_ENDPOINT = 'http://localhost:9090';
@@ -44,29 +47,51 @@ class App extends React.Component {
     })
   }
 
+  handleAddFolder = folder => {
+    this.setState({
+      folders: [
+        ...this.state.folders,
+        folder
+      ]
+    })
+  }
+
+  handleAddNote = note => {
+    this.setState({
+      notes: [
+        ...this.state.notes,
+        note
+      ]
+    })
+  }
+
   renderNavs() {
     return (
       <div className='NavRoutes'>
-        {['/', '/folder/:folderId'].map(path =>
-          <Route
-            exact
-            key={path}
-            path={path}
-            component={FoldersNav}
-          />
+        {['/', '/folder/:folderId'].map((path, index) =>
+          <NoteError key={index} path={path}>
+            <Route
+              exact
+              key={path}
+              path={path}
+              component={FoldersNav}
+            />
+          </NoteError>
         )}
-        <Route
-          path='/note/:noteId'
-          component={NotePageNav}
-        />
-        <Route
-          path='/add-folder'
-          component={NotePageNav}
-        />
-        <Route
-          path='/add-note'
-          component={NotePageNav}
-        /> 
+        <NoteError>
+          <Route
+            path='/note/:noteId'
+            component={NotePageNav}
+          />
+          <Route
+            path='/add-folder'
+            component={AddFolder}
+          />
+          <Route
+            path='/add-note'
+            component={AddNote}
+          /> 
+          </NoteError>
       </div>
     )
   };
@@ -74,19 +99,22 @@ class App extends React.Component {
   renderMains() {
     return (
       <div className='MainRoutes'>
-        {['/', '/folder/:folderId'].map(path =>
+        {['/', '/folder/:folderId'].map((path, index) =>
+          <NoteError key={index} path={path}>
+            <Route
+              exact
+              key={path}
+              path={path}
+              component={NotesMain}
+            />
+          </NoteError>
+        )}
+        <NoteError>
           <Route
-            exact
-            key={path}
-            path={path}
-            component={NotesMain}
-                />
-              )
-            }
-        <Route
-          path='/note/:noteId'
-          component={NotePageMain}
-        />
+            path='/note/:noteId'
+            component={NotePageMain}
+          />
+        </NoteError>
       </div>
     )
   };

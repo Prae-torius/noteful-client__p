@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import Note from '../Note/Note';
 import ApiContext from '../ApiContext/ApiContext';
 import { getNotesForFolder } from '../helper-funcs';
@@ -29,11 +31,22 @@ class NotesMain extends React.Component {
           )}
         </ul>
         <div className='NotesMain__button'>
-            <button className='NotesMain__add-note-button'>Add Note</button>
+            <button className='NotesMain__add-note-button'>
+              <Link
+                to='/add-note'
+                className='NotesMain__add-note-link'>
+                Add Note
+              </Link>
+            </button>
         </div>
       </section>
     )
   }
+}
+
+NotesMain.propTypes = {
+  folderId: PropTypes.string,
+  notes: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default NotesMain
