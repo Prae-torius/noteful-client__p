@@ -1,6 +1,6 @@
 import React from 'react';
 
-class NoteError extends React.Component {
+class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +15,11 @@ class NoteError extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <p>Something went wrong, this component failed to load</p>
+        <p className='Noteful_error-message'>Something went wrong, this component failed</p>
       )
     }
     return this.props.children;
   }
 }
 
-export default NoteError;
+export default ErrorBoundary;

@@ -84,20 +84,30 @@ export default class AddFolder extends React.Component {
     return (
       <section className='AddFolder' onSubmit={e => this.handleSubmit(e)}>
         <button 
-          className='AddFolder__back'
+          className='AddFolder_back-button'
           onClick={() => this.props.history.goBack()}
         >
           Back
         </button>
         <form>
           <legend><h2>Add Folder</h2></legend>
-          <div><p>folder name is required</p></div>
-          <label htmlFor='name'>Folder Name: </label>
-          <input type='text' id='name' name='name' placeholder='folder name' onChange={e => this.updateName(e.target.value)}/>
+          
+          <label htmlFor='name'>Folder Name: 
+            <span className='requiredField'>(required)</span> 
+          </label>
+          <input 
+          type='text' 
+          id='name' 
+          name='name' 
+          aria-label='name'
+          aria-required='true'
+          aria-describedby='nameRequirement'
+          placeholder='folder name' 
+          onChange={e => this.updateName(e.target.value)}/>
+          <div id='nameRequirement'>Name must not be blank, must not start or end with a space</div>
           <button type='submit' disabled={!this.state.formValid}>Submit</button>
         </form>
       </section>
     )
   }
 }
-

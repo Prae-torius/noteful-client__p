@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 export default function ValidationError(props) {
   if(props.hasError) {
     return (
-      <div className='error'>{props.message}</div>
+      <Fragment>
+        <div className='Validation_error-message'>
+          {props.message}
+        </div>
+      </Fragment>
     )
   }
   return <></>

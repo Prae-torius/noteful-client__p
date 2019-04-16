@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import ApiContext from '../ApiContext/ApiContext';
@@ -37,21 +37,22 @@ export default class Note extends React.Component {
 
   render() {
     return (
-      <div className='Note' id={this.props.id}>
-        <h2 className='Note-title'>
-          <Link to={`/note/${this.props.id}`}>
-            {this.props.name}
-          </Link>
-        </h2> 
-        <p>{this.props.modified}</p>
-        <button 
-          className='Note-delete'
-          type='button'
-          onClick={this.handleClickDelete}
-        >
-          Delete Note
-        </button>    
-      </div>
+      <Fragment>
+        <div className='Note' id={this.props.id}>
+          <h2 className='Note_title'>
+            <Link to={`/note/${this.props.id}`}>
+              {this.props.name}
+            </Link>
+          </h2> 
+          <p>{this.props.modified}</p>
+          <button 
+            className='Note_delete-button'
+            onClick={this.handleClickDelete}
+          >
+            Delete Note
+          </button>
+        </div>
+      </Fragment>
     )
   }
 }

@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,10 +9,69 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; 
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+section {
+  padding-left: 30px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.App__nav {
+  grid-area: sidebar;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.FoldersNav_heading {
+  margin: 0;
+  padding: 15px 0;
+  border-bottom: 1px solid black;
+}
+
+.App__header {
+  grid-area: header;
+}
+
+.App__main {
+  grid-area: main;
+}
+
+.NotesMain {
+  padding-left: 15px;
+}
+
+.Note {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  width: 500px;
+  padding-bottom: 20px;
+}
+
+.NotePageMain_note-content {
+  width: 500px;
+  border-bottom: 1px solid black;
+}
+
+.NotesMain_list li:last-child {
+  border-bottom: 1px solid black;
+}
+
+div.App {
+  display: grid;
+  grid-template-columns: 400px 40vw 40vw;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "header header header"
+  "sidebar main main";
+}
+

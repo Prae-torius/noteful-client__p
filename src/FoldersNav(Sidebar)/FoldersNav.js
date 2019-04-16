@@ -10,6 +10,7 @@ class FoldersNav extends React.Component {
     const { folders=[] } =this.context
     return (
       <section className='FoldersNav'>
+        <h2 className='FoldersNav_heading'>Folders</h2>
         <ul className='FoldersNav_list'>
           {folders.map(folder =>
             <li key={folder.id}>
@@ -24,22 +25,22 @@ class FoldersNav extends React.Component {
             </li>
           )}
         </ul>
-        <div>
-          <button>
-            <Link 
-              to='/add-folder'
-              className='FoldersNav_button'>
-                Add Folder
-            </Link>
-          </button>
-        </div>
+        <Link 
+          to='/add-folder'
+          className='FoldersNav_link'
+        >
+          Add Folder
+        </Link>
       </section>
     )
   }
 }
 
 FoldersNav.propTypes = {
-  folders: PropTypes.arrayOf(PropTypes.object)
+  folders: PropTypes.arrayOf(PropTypes.shape({
+    'id': PropTypes.string.isRequired,
+    'name': PropTypes.string.isRequired,
+  })),
 }
 
 export default FoldersNav;

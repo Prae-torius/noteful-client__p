@@ -22,7 +22,7 @@ class NotePageNav extends React.Component {
     return (
       <section className='NotePageNav'>
         <button 
-          className='NotePageNav__back'
+          className='NotePageNav_back-button'
           onClick={() => this.props.history.goBack()}
         >
           Back
@@ -36,9 +36,17 @@ class NotePageNav extends React.Component {
 }
 
 NotePageNav.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
-  folders: PropTypes.arrayOf(PropTypes.object),
-  noteId: PropTypes.string.isRequired
+  notes: PropTypes.arrayOf(PropTypes.shape({
+    'id': PropTypes.string.isRequired,
+    'name': PropTypes.string.isRequired,
+    'modified': PropTypes.string.isRequired,
+    'folderId': PropTypes.string.isRequired,
+    'content': PropTypes.string.isRequired
+  })),
+  folders: PropTypes.arrayOf(PropTypes.shape({
+    'id': PropTypes.string.isRequired,
+    'name': PropTypes.string.isRequired,
+  })),
 }
 
 export default NotePageNav 

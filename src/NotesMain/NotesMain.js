@@ -19,7 +19,14 @@ class NotesMain extends React.Component {
     const notesForFolder = getNotesForFolder(notes, folderId)
     return (
       <section className='NotesMain'>
-        <ul>
+        <h2 className='NotesMain_heading'>Notes</h2>
+        <Link
+            to='/add-note'
+            className='NotesMain_add-note-link'
+          >
+            Add Note
+        </Link>
+        <ul className='NotesMain_list'>
           {notesForFolder.map(note =>
             <li key={note.id}>
               <Note
@@ -30,15 +37,12 @@ class NotesMain extends React.Component {
             </li>
           )}
         </ul>
-        <div className='NotesMain__button'>
-            <button className='NotesMain__add-note-button'>
-              <Link
-                to='/add-note'
-                className='NotesMain__add-note-link'>
-                Add Note
-              </Link>
-            </button>
-        </div>
+          <Link
+            to='/add-note'
+            className='NotesMain_add-note-link'
+          >
+            Add Note
+          </Link>
       </section>
     )
   }
@@ -46,7 +50,13 @@ class NotesMain extends React.Component {
 
 NotesMain.propTypes = {
   folderId: PropTypes.string,
-  notes: PropTypes.arrayOf(PropTypes.object)
+  notes: PropTypes.arrayOf(PropTypes.shape({
+    'id': PropTypes.string.isRequired,
+    'name': PropTypes.string.isRequired,
+    'modified': PropTypes.string.isRequired,
+    'folderId': PropTypes.string.isRequired,
+    'content': PropTypes.string.isRequired
+  }))
 }
 
 export default NotesMain

@@ -6,7 +6,7 @@ import NotesMain from './NotesMain/NotesMain';
 import NotePageMain from './NotePageMain/NotePageMain';
 import AddFolder from './AddFolder/AddFolder';
 import AddNote from './AddNote/AddNote';
-import NoteError from './NoteError/NoteError';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import ApiContext from './ApiContext/ApiContext';
 
 const API_ENDPOINT = 'http://localhost:9090';
@@ -69,16 +69,16 @@ class App extends React.Component {
     return (
       <div className='NavRoutes'>
         {['/', '/folder/:folderId'].map((path, index) =>
-          <NoteError key={index} path={path}>
+          <ErrorBoundary key={index}>
             <Route
               exact
               key={path}
               path={path}
               component={FoldersNav}
             />
-          </NoteError>
+          </ErrorBoundary>
         )}
-        <NoteError>
+        <ErrorBoundary>
           <Route
             path='/note/:noteId'
             component={NotePageNav}
@@ -91,7 +91,7 @@ class App extends React.Component {
             path='/add-note'
             component={AddNote}
           /> 
-          </NoteError>
+          </ErrorBoundary>
       </div>
     )
   };
@@ -100,21 +100,21 @@ class App extends React.Component {
     return (
       <div className='MainRoutes'>
         {['/', '/folder/:folderId'].map((path, index) =>
-          <NoteError key={index} path={path}>
+          <ErrorBoundary key={index}>
             <Route
               exact
               key={path}
               path={path}
               component={NotesMain}
             />
-          </NoteError>
+          </ErrorBoundary>
         )}
-        <NoteError>
+        <ErrorBoundary>
           <Route
             path='/note/:noteId'
             component={NotePageMain}
           />
-        </NoteError>
+        </ErrorBoundary>
       </div>
     )
   };

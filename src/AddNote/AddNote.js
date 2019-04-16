@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ApiContext from '../ApiContext/ApiContext';
 import ValidationError from '../ValidtionError/ValidationError';
 
@@ -110,7 +109,7 @@ export default class AddNote extends React.Component {
     })
     .then(note => {
       this.context.addNote(note)
-      this.props.history.push(`note/${note.id}`)
+      this.props.history.push(`/`)
       console.log(`Data submitted: ${note.name}`)
     })
     .catch(error => {
@@ -122,7 +121,7 @@ export default class AddNote extends React.Component {
     return (
       <section className='AddNote' onSubmit={e => this.handleSubmit(e)}>
         <button 
-          className='AddNote__back'
+          className='AddNote_back-button'
           onClick={() => this.props.history.goBack()}
         >
           Back
@@ -130,8 +129,15 @@ export default class AddNote extends React.Component {
         <form>
           <h2>Add Note</h2>
           <div className='AddNote__select'>
-            <label htmlFor='note-folder'>Select Folder: </label>
-            <select id='note-folder' name='note-folder' onChange={e => this.updateFolder(e.target.value)}>
+            <label htmlFor='note-folder'>Select Folder: 
+              <span className='requiredField'>(required)</span>
+            </label>
+            <select 
+              id='note-folder' 
+              name='note-folder' 
+              aria-label='note-folder'
+              aria-required='true'
+              onChange={e => this.updateFolder(e.target.value)}>
               <option value=''>Select Folder</option>
               {this.context.folders.map((folder, index) => {
                 return <option key={index} value={folder.id}>{folder.name}</option>
@@ -140,8 +146,17 @@ export default class AddNote extends React.Component {
             <ValidationError hasError={!this.state.folderValid} message={this.state.validMsgs.folder} />
           </div>
           <div className='AddNote__note-name'>
-            <label htmlFor='note-name'>Name: </label>
-            <input type='text' id='note-name' name='note-name' placeholder='note name' onChange={e => this.updateName(e.target.value)}/>
+            <label htmlFor='note-name'>Name: 
+              <span className='requiredField'>(required)</span>
+            </label>
+            <input 
+              type='text' 
+              id='note-name' 
+              name='note-name' 
+              aria-label='note-name'
+              aria-required='true'
+              placeholder='note name' 
+              onChange={e => this.updateName(e.target.value)}/>
               <ValidationError hasError={!this.state.nameValid} message={this.state.validMsgs.name} />
           </div>
           <div className='AddNote__note-content'>

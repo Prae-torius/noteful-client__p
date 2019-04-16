@@ -23,7 +23,7 @@ class NotePageMain extends React.Component {
           name={note.name}
           modified={note.modified}
         />
-        <div className='NotePageMain___note-content'>
+        <div className='NotePageMain_note-content'>
           <p>{note.content}</p>
         </div>
       </section>
@@ -32,7 +32,13 @@ class NotePageMain extends React.Component {
 }
 
 NotePageMain.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
+  notes: PropTypes.arrayOf(PropTypes.shape({
+    'id': PropTypes.string.isRequired,
+    'name': PropTypes.string.isRequired,
+    'modified': PropTypes.string.isRequired,
+    'folderId': PropTypes.string.isRequired,
+    'content': PropTypes.string.isRequired
+  })),
   noteId: PropTypes.string
 }
 
